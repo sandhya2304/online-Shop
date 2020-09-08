@@ -9,4 +9,6 @@ public interface CategoryDAO
 	
 	List<Category> listCategory();
 
+	Category get(int id);
+
 }

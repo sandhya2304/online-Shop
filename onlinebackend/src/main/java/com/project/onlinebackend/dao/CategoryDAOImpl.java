@@ -23,7 +23,7 @@ public class CategoryDAOImpl implements CategoryDAO
 		cat.setActive(true);
 		
 		Category cat2 = new Category();
-		cat2.setId(1);
+		cat2.setId(2);
 		cat2.setName("Drink");
 		cat2.setDescription("this is for Drink");
 		cat2.setImageURL("soap.jpg");
@@ -40,6 +40,19 @@ public class CategoryDAOImpl implements CategoryDAO
 	public List<Category> listCategory()
 	{	
 		return list;
+	}
+
+
+
+	@Override
+	public Category get(int id) {
+		
+		for(Category cat: listCategory())
+		{
+			if(cat.getId() == id) return cat;
+		}
+		
+		return null;
 	}
 	
 	

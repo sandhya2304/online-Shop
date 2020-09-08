@@ -3,7 +3,7 @@
                 
                 <c:forEach items="${categories}" var="cat">
                 
-                 <a href="#" class="list-group-item">${cat.name } </a>
+                 <a href="${contextRoot}/show/category/${cat.id}/products" class="list-group-item" id="a_${cat.name}">${cat.name } </a>
                 
                 </c:forEach>
                 
