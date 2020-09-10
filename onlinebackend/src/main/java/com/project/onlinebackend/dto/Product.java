@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 public class Product 
@@ -21,20 +23,27 @@ public class Product
 	private String name;
 	//@NotBlank(message = "Please enter the brand name!")
 	private String brand;
+	
 	//@NotBlank(message = "Please enter the description!")
-	//@JsonIgnore   //not convert into json format telling to controller
+	@JsonIgnore   //not convert into json format telling to controller
 	private String description;
+	
 	@Column(name = "unit_price")
 	//@Min(value = 1, message="Please select at least one value!")
 	private double unitPrice;
+	
 	private int quantity;
+	
 	@Column(name = "is_active")	
+	@JsonIgnore
 	private boolean active=true;
+	
 	@Column(name = "category_id")
-	//@JsonIgnore
+	@JsonIgnore
 	private int categoryId;
+	
 	@Column(name = "supplier_id")
-	//@JsonIgnore
+	@JsonIgnore
 	private int supplierId;
 	private int purchases;
 	private int views;
