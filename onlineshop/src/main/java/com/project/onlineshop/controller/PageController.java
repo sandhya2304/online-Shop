@@ -1,5 +1,7 @@
 package com.project.onlineshop.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +17,8 @@ import com.project.onlinebackend.dto.Product;
 public class PageController
 {
 	
+	private static final Logger logger = LoggerFactory.getLogger(PageController.class);
+	
 	@Autowired
 	private CategoryDAO categoryDAO;
 	
@@ -27,6 +31,8 @@ public class PageController
 		  ModelAndView mv = new ModelAndView("page");
 		  mv.addObject("title","Home");
 		  
+		  logger.info("inside page control index  -INFO");
+		  logger.debug("inside page control index  -DEBUG");
 		  
 		  mv.addObject("categories",categoryDAO.listCategory());
 		  
