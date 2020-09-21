@@ -2,6 +2,7 @@ package com.project.onlineshop.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -20,6 +21,7 @@ import com.project.onlinebackend.dao.CategoryDAO;
 import com.project.onlinebackend.dao.ProductDAO;
 import com.project.onlinebackend.dto.Category;
 import com.project.onlinebackend.dto.Product;
+import com.project.onlineshop.util.FileUploadUtility;
 
 
 
@@ -65,7 +67,8 @@ public class ManagementController
 	
 	
 	@RequestMapping(value="/products",method=RequestMethod.POST)
-	public String handleProductSubmission(@Valid @ModelAttribute("product") Product mProduct,BindingResult results,Model model)
+	public String handleProductSubmission(@Valid @ModelAttribute("product") Product mProduct,
+			                                BindingResult results,Model model,HttpServletRequest request)
 	{
 		
 		if(results.hasErrors()){
@@ -82,6 +85,12 @@ public class ManagementController
 		logger.info(mProduct.toString());
 		
 		productDAO.addProduct(mProduct);
+		
+		if(!mProduct.getFile().getOriginalFilename().equals("")){
+			FileUploadUtility.uploadFile(request,mProduct.getFile(),mProduct.getCode());
+		}
+		
+		
 		
 		return "redirect:/manage/products?operation=product";
 	}
