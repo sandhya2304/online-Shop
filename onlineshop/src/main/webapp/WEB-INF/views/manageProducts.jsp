@@ -38,7 +38,7 @@
                    <label class="control-label col-md-4" for="name">Enter the Name</label>
                    <div class="col-md-8">
                      <sf:input type="text" path="name" id="name" placeholder="Enter name" class="form-control" />
-                   
+                     <sf:errors path="name" cssClass="help-block" element="em" />
                    </div>                 
                  </div>
                  
@@ -46,7 +46,7 @@
                    <label class="control-label col-md-4" for="brand">Enter the Brand</label>
                    <div class="col-md-8">
                      <sf:input type="text" path="brand" id="brand" placeholder="Enter brand" class="form-control" />
-                     
+                         <sf:errors path="brand" cssClass="help-block" element="em" />
                    </div>                 
                  </div>
                  
@@ -54,7 +54,7 @@
                    <label class="control-label col-md-4" for="unitPrice">Enter the Product Description</label>
                    <div class="col-md-8">
                      <sf:textarea path="description" id="description" rows="4" placeholder="Enter the description" ></sf:textarea>
-                     
+                         <sf:errors path="description" cssClass="help-block" element="em" />
                    </div>                 
                  </div>
                  
@@ -62,7 +62,7 @@
                    <label class="control-label col-md-4" for="unitPrice">Enter the unitPrice</label>
                    <div class="col-md-8">
                      <sf:input type="number" path="unitPrice" id="unitPrice" placeholder="Enter unitPrice" class="form-control" />
-                     
+                       <sf:errors path="unitPrice" cssClass="help-block" element="em" />
                    </div>                 
                  </div>
                  
@@ -70,7 +70,7 @@
                    <label class="control-label col-md-4" for="quantity">Enter the quantity</label>
                    <div class="col-md-8">
                      <sf:input type="number" path="quantity" id="quantity" placeholder="Enter quantity" class="form-control" />
-                    
+                      <sf:errors path="quantity" cssClass="help-block" element="em" />
                    </div>                 
                  </div>
                  
