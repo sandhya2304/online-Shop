@@ -22,6 +22,7 @@ import com.project.onlinebackend.dao.ProductDAO;
 import com.project.onlinebackend.dto.Category;
 import com.project.onlinebackend.dto.Product;
 import com.project.onlineshop.util.FileUploadUtility;
+import com.project.onlineshop.validator.ProductValidator;
 
 
 
@@ -70,6 +71,10 @@ public class ManagementController
 	public String handleProductSubmission(@Valid @ModelAttribute("product") Product mProduct,
 			                                BindingResult results,Model model,HttpServletRequest request)
 	{
+		
+		
+		new ProductValidator().validate(mProduct, results);
+				
 		
 		if(results.hasErrors()){
 			
