@@ -162,70 +162,7 @@
 					</tr>				
 				</thead>
 				
-			   <tbody>
-			   
-			    <tr>
-			     <td>2</td>
-			     <td>
-			        <img class="adminDataTableImg" src="${contextRoot}/resources/images/PRD9BB2F4DDDA.jpg" alt="MI Phone" />  </td>
-			    
-			     <td>MI Phone</td>
-			       <td>OPPP</td>
-			     <td>0</td>
-			    
-			     <td>&#8377; 23770.0</td>
-			    
-			    
-			    <td>
-			      <!-- toggle switch -->
-                    <label class="switch">
-                          
-                          <input type="checkbox" checked="checked" value="2" />
-                         <div class="slider"/>
-                    </label>
-                    			    
-			    </td>
-			    
-			    <td>
-			      
-			       <a href="${contextRoot}/manage/2/product" class="btn btn-warning">
-			          <span class="glyphicon glyphicon-pencil"></span>
-			       </a>
-			   
-			    </td>
-			    
-			     </tr>
-			     
-			      <tr>
-			     <td>2</td>
-			     <td><img class="adminDataTableImg" src="${contextRoot}/resources/images/PRD9BB2F4DDDA.jpg" alt="MI Phone">  </td>
-			     
-			      <td>MI Phone</td>
-			      <td>OPPP</td>
-			     <td>0</td>
-			     <td>&#8377; 23770.0</td>
-			    <td>
-			      <!-- toggle switch -->
-                    <label class="switch">
-                          
-                          <input type="checkbox"  value="2" />
-                         <div class="slider"/>
-                    </label>
-                    			    
-			    </td>
-			    
-			    <td>
-			      
-			       <a href="${contextRoot}/manage/2/product" class="btn btn-warning">
-			          <span class="glyphicon glyphicon-pencil"></span>
-			       </a>
-			   
-			    </td>
-			    
-			     </tr>
-			     
-			   </tbody>
-				
+			 
 				
 				<tfoot>
 					<tr>					
