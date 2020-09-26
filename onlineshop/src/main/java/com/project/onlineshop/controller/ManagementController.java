@@ -59,6 +59,8 @@ public class ManagementController
 		if(operation != null){
 			if(operation.equals("product")){
 				mv.addObject("msg","Product Submitted Successfully !!!");
+			}else if(operation.equals("category")){
+				mv.addObject("msg","Catgeory Submitted Successfully !!!");
 			}
 		}
 		
@@ -69,14 +71,40 @@ public class ManagementController
 	}
 	
 	
+
+	@RequestMapping(value="/{id}/product",method=RequestMethod.GET)
+	public ModelAndView showEditProduct(@PathVariable int id)
+	{
+		ModelAndView mv = new ModelAndView("page");
+		mv.addObject("userClickManageProducts",true);
+		mv.addObject("title","Manage Products ");
+		
+		//fetch the product id
+		Product nProduct = productDAO.get(id);
+
+		//set the product fetch from database
+		mv.addObject("product",nProduct);
+		
+		return mv;
+	}
+	
+	
+	
+	
+	
 	@RequestMapping(value="/products",method=RequestMethod.POST)
 	public String handleProductSubmission(@Valid @ModelAttribute("product") Product mProduct,
 			                                BindingResult results,Model model,HttpServletRequest request)
 	{
 		
-		
-		new ProductValidator().validate(mProduct, results);
-				
+		if(mProduct.getId() == 0)
+		{
+		  new ProductValidator().validate(mProduct, results);
+		}else{
+			if(!mProduct.getFile().getOriginalFilename().equals("")){
+				 new ProductValidator().validate(mProduct, results);
+			}
+		}
 		
 		if(results.hasErrors()){
 			
@@ -91,8 +119,14 @@ public class ManagementController
 		
 		logger.info(mProduct.toString());
 		
-		productDAO.addProduct(mProduct);
 		
+		if(mProduct.getId() == 0)
+		{
+		  productDAO.addProduct(mProduct);
+		}else{
+			productDAO.updateProduct(mProduct);
+		}
+		  
 		if(!mProduct.getFile().getOriginalFilename().equals("")){
 			FileUploadUtility.uploadFile(request,mProduct.getFile(),mProduct.getCode());
 		}
@@ -100,14 +134,6 @@ public class ManagementController
 		
 		
 		return "redirect:/manage/products?operation=product";
-	}
-	
-	
-	
-	@ModelAttribute("categories")
-	public List<Category> listCategories(){
-		
-		return categoryDAO.listCategory();	
 	}
 	
 	@RequestMapping(value="/product/{id}/activation",method=RequestMethod.POST)
@@ -126,8 +152,25 @@ public class ManagementController
 	}
 	
 	
+	@ModelAttribute("categories")
+	public List<Category> listCategories(){
+		
+		return categoryDAO.listCategory();	
+	}
 	
+	@ModelAttribute("category")
+	public Category getCategory()
+	{
+		return new Category();
+	}
 	
+	@RequestMapping(value="/category",method=RequestMethod.POST)
+	public String handleCategorySubmission(@ModelAttribute Category category)
+	{	
+		categoryDAO.add(category);
+	
+		return "redirect:/manage/products/?operation=category";
+	}
 	
 	
 
