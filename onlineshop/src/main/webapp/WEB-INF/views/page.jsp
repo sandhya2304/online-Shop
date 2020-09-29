@@ -96,11 +96,17 @@
 
     <!-- JavaScript -->
     <script src="${js}/jquery.js"></script>
+    
+     
+      <!--  validate -->
+     <script src="${js}/jquery.validate.js"></script>
+  
     <script src="${js}/bootstrap.js"></script>
     
     <!-- datatables plugin -->
      <script src="${js}/jquery.dataTables.js"></script>
      
+    
       <!-- datatables plugin -->
      <script src="${js}/dataTables.bootstrap.js"></script>
      

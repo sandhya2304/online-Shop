@@ -252,19 +252,44 @@ $(function(){
 		});
    }
 	
+	//*****************JQUERY VALIDATION*******************************************
 	
 	
+	var $categoryForm = $('#categoryForm');
+	if($categoryForm.length)
+	 {
+		$categoryForm.validate({
+			
+			 rules : {
+				 name : {
+					 required : true,
+					 minlength : 2
+				 },
+				 description : {
+					 required : true
+				 }
+			 },
+			 messages : {
+				 name : {
+					 required : 'Plz Enter the category name!!',
+					 minlength : 'Category name length should be min 2 character !!!'
+				 },
+				 description : {
+					 required : 'Plz Enter the category description!!',
+					
+				 }
+			 },
+			 
+			 errorElement : 'em',
+			 errorPlacement : function(error,element){
+				 error.addClass('help-block');
+				 error.insertAfter(element);
+			 }
+			
+		});
+	 }
 	
-	
-	
-	
-	
-	
-	
-       
-	
-          
-	
+
 	
 	
 	
