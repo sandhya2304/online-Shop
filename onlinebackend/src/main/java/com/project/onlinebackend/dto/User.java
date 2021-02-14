@@ -1,20 +1,30 @@
 package com.project.onlinebackend.dto;
 
+import java.io.Serializable;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.validator.constraints.NotBlank;
 
 
 @Entity
 @Table(name="user_detail")
-public class User 
+public class User implements Serializable
 {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -37,7 +47,38 @@ public class User
 	private String role;
 	private String password;
 	
+	
+	@Transient
+	private String ConfirmPassword;
+	
+	
+	
 	private boolean enabled = true;
+	
+	
+	/***************/
+	
+	@OneToOne(mappedBy="user",cascade = CascadeType.ALL)
+	private Cart cart;
+	
+	
+	
+
+	public String getConfirmPassword() {
+		return ConfirmPassword;
+	}
+
+	public void setConfirmPassword(String confirmPassword) {
+		ConfirmPassword = confirmPassword;
+	}
+
+	public Cart getCart() {
+		return cart;
+	}
+
+	public void setCart(Cart cart) {
+		this.cart = cart;
+	}
 
 	public int getId() {
 		return id;

@@ -1,15 +1,25 @@
 package com.project.onlinebackend.dto;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
-public class Cart 
+public class Cart  implements Serializable
 {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) 
 	private int id;
@@ -20,8 +30,26 @@ public class Cart
 	@Column(name = "cart_lines")
 	private int cartLines;
 	
-	@Column(name = "user_id")
-	private int user_id;
+	
+	/*
+	 *
+	 */
+	
+	@OneToOne
+	//@JoinColumn(name = "uid")
+	private User user;
+	
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+	
+	
+	
 
 	public int getId() {
 		return id;
@@ -30,6 +58,8 @@ public class Cart
 	public void setId(int id) {
 		this.id = id;
 	}
+
+	
 
 	public double getGrandTotal() {
 		return grandTotal;
@@ -47,19 +77,12 @@ public class Cart
 		this.cartLines = cartLines;
 	}
 
-	public int getUser_id() {
-		return user_id;
-	}
-
-	public void setUser_id(int user_id) {
-		this.user_id = user_id;
-	}
-
 	@Override
 	public String toString() {
-		return "Cart [id=" + id + ", grandTotal=" + grandTotal + ", cartLines=" + cartLines + ", user_id=" + user_id
-				+ "]";
+		return "Cart [id=" + id + ", grandTotal=" + grandTotal + ", cartLines=" + cartLines + ", user=" + user + "]";
 	}
+
+	
 	
 	
 

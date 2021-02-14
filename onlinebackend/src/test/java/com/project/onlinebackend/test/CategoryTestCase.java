@@ -95,7 +95,7 @@ public class CategoryTestCase
 	
 	
 
-	/*@Test
+	@Test
 	public void testCrudCategory()
 	{
 		
@@ -125,7 +125,7 @@ public class CategoryTestCase
 		
 	}
 	
-	*/
+	
 	
 	
 	

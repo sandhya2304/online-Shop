@@ -1,5 +1,9 @@
 package com.project.onlinebackend.dao;
 
+import java.util.List;
+
+import javax.persistence.Query;
+
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -22,12 +26,16 @@ public class UserDAOImpl implements UserDAO
 
 	@Override
 	public boolean addUser(User user) {
+		 
 		try
 		{
+			
 			sessionFactory.getCurrentSession().persist(user);
 			return true;
-		}catch(Exception e){
-			System.out.println(e.getMessage());
+			
+		}catch(Exception e)
+		{
+			e.printStackTrace();
 			return false;
 		}
 		
@@ -46,15 +54,70 @@ public class UserDAOImpl implements UserDAO
 	}
 
 	@Override
-	public boolean addCart(Cart cart) {
+	public boolean updateCart(Cart cart) {
 		try
 		{
-			sessionFactory.getCurrentSession().persist(cart);
+			sessionFactory.getCurrentSession().update(cart);
 			return true;
 		}catch(Exception e){
 			System.out.println(e.getMessage());
 			return false;
 		}
+	}
+
+	@Override
+	public User userByEmail(String email) {
+		String query = "FROM User where email = :email";
+		
+		try
+		{
+		    return sessionFactory.getCurrentSession()
+		    		     .createQuery(query,User.class)
+		    		     .setParameter("email",email)
+			               .getSingleResult();
+			
+		}catch(Exception e){
+			//e.printStackTrace();
+			return null;
+		}
+		
+		
+	}
+
+	@Override
+	public Address getBillingAddress(User user) {
+       String query = "FROM Address where user = :user AND billing = :billing";
+		
+		try
+		{
+		    return sessionFactory.getCurrentSession()
+		    		     .createQuery(query,Address.class)
+		    		     .setParameter("user",user)
+		    		     .setParameter("billing",true)
+			               .getSingleResult();
+			
+		}catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	@Override
+	public List<Address> getListAddress(User user) {
+		  String query = "FROM Address where user = :user AND shipping = :shipping";
+			
+			try
+			{
+			    return sessionFactory.getCurrentSession()
+			    		     .createQuery(query,Address.class)
+			    		     .setParameter("user",user)
+			    		     .setParameter("shipping",true)
+				               .getResultList();
+				
+			}catch(Exception e){
+				e.printStackTrace();
+				return null;
+			}
 	}
 	
 	

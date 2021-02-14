@@ -1,18 +1,26 @@
 package com.project.onlinebackend.dto;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 import org.hibernate.validator.constraints.NotBlank;
 
 
 @Entity
-public class Address 
+public class Address implements Serializable
 {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -44,19 +52,24 @@ public class Address
 	@Column(name="is_billing")
 	private boolean billing;
 	
-	@Column(name = "user_id")
+	/*@Column(name = "user_id")
 	private int user_id;
-	
+	*/
 
 	
+	@ManyToOne
+	private User user;
 	
-	public int getUser_id() {
-		return user_id;
+	
+	public void setUser(User user) {
+		this.user = user;
 	}
-
-	public void setUser_id(int user_id) {
-		this.user_id = user_id;
+	
+	public User getUser() {
+		return user;
 	}
+	
+	
 
 	public int getId() {
 		return id;

@@ -42,7 +42,7 @@
           
           <h4>Price: <strong> &#8377; ${product.unitPrice} /- </strong></h4>
           <hr/>
-          
+ <%@taglib prefix="security" uri="http://www.springframework.org/security/tags" %>         
          
           <!-- quantity is 0 -->
           <c:choose>
@@ -56,12 +56,15 @@
           
           
           <!-- Add to cart quantity -->
+          
+            <security:authorize access="hasAuthority('USER')">
            <c:choose>
              <c:when test="${product.quantity < 1 }">
                     <a href="javascript.void(0)" class="btn btn-success disabled"><strike>
           <span class="glyphicon glyphicon-shopping-cart"></span>
           Add To Cart</a></strike>
              </c:when>
+           
              <c:otherwise>
                   <a href="${contextRoot}/cart/add/${product.id}/product" class="btn btn-success">
           <span class="glyphicon glyphicon-shopping-cart"></span>
@@ -69,7 +72,14 @@
              </c:otherwise>
           </c:choose>
           
+          </security:authorize>
           
+          
+           <security:authorize access="hasAuthority('ADMIN')">
+               <a href="${contextRoot}/manage/${product.id}/product" class="btn btn-warning">
+          <span class="glyphicon glyphicon-pencil"></span>
+          Edit</a>
+           </security:authorize>
          
           
           <a href="${contextRoot}/show/all/products" class="btn btn-primary">

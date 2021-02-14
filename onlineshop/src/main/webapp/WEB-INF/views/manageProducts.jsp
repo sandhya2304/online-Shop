@@ -156,10 +156,11 @@
     </div>
     
     <div class="col-xs-12">
-      <div style="overflow:auto">
-      
-      
-      <!-- products table for Admin -->
+    
+      <div class="container-fluid">
+              <div class="table-responsive">
+                 
+                <!-- products table for Admin -->
       
        <table id="adminproductsTable" class="table table-condensed table-bordered">
 							
@@ -192,10 +193,14 @@
 				</tfoot>
 				
 							
-			</table>
+			</table>  
+                 
+               </div>
+            </div>     
+      
+      
+     
     
-    
-      </div>
     </div>
   </div>
 

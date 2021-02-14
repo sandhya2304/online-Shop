@@ -29,7 +29,7 @@ public class ProductTestCase
 		productDao = (ProductDAO) context.getBean("productDAO");		
 	}
 	
-	/*@Test
+	@Test
 	public void test(){
 		
 		product = new Product();
@@ -43,7 +43,7 @@ public class ProductTestCase
 		
 		assertEquals("product is add in table",true,productDao.addProduct(product));		
 	}
-	*/
+	
 	
 	
 	@Test
